@@ -26,6 +26,7 @@ import {
     Login as LoginIcon,
     Logout as LogoutIcon,
     AccountCircle,
+    Groups as GroupsIcon,
 } from "@mui/icons-material";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -60,6 +61,7 @@ const Navbar = () => {
     const menuItems = [
         { text: "Accueil", icon: <HomeIcon />, path: "/" },
         { text: "Galerie", icon: <PhotoIcon />, path: "/gallery" },
+        { text: "Groupes", icon: <GroupsIcon />, path: "/groups" },
     ];
 
     const drawer = (

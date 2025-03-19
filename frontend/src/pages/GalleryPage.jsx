@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import GalleryItem from "../components/gallery/GalleryItem";
 import axios from "axios";
+// Import des données fictives
+import { mediaItems as mockMediaItems } from "../mocks";
 
 const GalleryPage = () => {
     const [mediaItems, setMediaItems] = useState([]);
@@ -31,66 +33,7 @@ const GalleryPage = () => {
 
                 // Données fictives pour le développement
                 setTimeout(() => {
-                    setMediaItems([
-                        {
-                            id: 1,
-                            title: "Spectacle de fin d'année",
-                            description:
-                                "Notre spectacle annuel au théâtre municipal",
-                            type: "image",
-                            url: "https://source.unsplash.com/random/800x600/?dance,performance",
-                            created_at: "2023-06-15T20:00:00Z",
-                            category: "performances",
-                        },
-                        {
-                            id: 2,
-                            title: "Répétition hebdomadaire",
-                            description: "Séance d'entraînement du mercredi",
-                            type: "image",
-                            url: "https://source.unsplash.com/random/800x600/?dance,practice",
-                            created_at: "2023-05-10T18:30:00Z",
-                            category: "répétitions",
-                        },
-                        {
-                            id: 3,
-                            title: "Workshop avec chorégraphe invité",
-                            description:
-                                "Session spéciale avec un chorégraphe professionnel",
-                            type: "image",
-                            url: "https://source.unsplash.com/random/800x600/?dance,workshop",
-                            created_at: "2023-04-22T14:00:00Z",
-                            category: "ateliers",
-                        },
-                        {
-                            id: 4,
-                            title: "Festival de danse contemporaine",
-                            description:
-                                "Notre participation au festival régional",
-                            type: "image",
-                            url: "https://source.unsplash.com/random/800x600/?contemporary,dance",
-                            created_at: "2023-03-18T19:00:00Z",
-                            category: "performances",
-                        },
-                        {
-                            id: 5,
-                            title: "Cours de hip-hop",
-                            description: "Nouveau cours ouvert aux débutants",
-                            type: "image",
-                            url: "https://source.unsplash.com/random/800x600/?hiphop,dance",
-                            created_at: "2023-02-05T17:30:00Z",
-                            category: "cours",
-                        },
-                        {
-                            id: 6,
-                            title: "Démonstration place du marché",
-                            description:
-                                "Performance publique lors de la fête de la ville",
-                            type: "image",
-                            url: "https://source.unsplash.com/random/800x600/?street,dance",
-                            created_at: "2023-01-14T15:00:00Z",
-                            category: "performances",
-                        },
-                    ]);
+                    setMediaItems(mockMediaItems);
                     setLoading(false);
                 }, 1000);
             } catch (err) {

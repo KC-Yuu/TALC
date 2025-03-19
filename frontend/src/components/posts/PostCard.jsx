@@ -14,41 +14,47 @@ import {
 import { Favorite, FavoriteBorder, Comment, Share } from "@mui/icons-material";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import { useNavigate } from 'react-router-dom';
 
 const PostCard = ({ post }) => {
     const [liked, setLiked] = useState(false);
+    const navigate = useNavigate();
     
     // Formatage de la date
     const formattedDate = post.created_at
         ? format(new Date(post.created_at), "dd MMMM yyyy", { locale: fr })
         : "";
 
-    const handleLike = () => {
+    const handleLikeClick = (e) => {
+        e.stopPropagation(); // Prevent card click event
         setLiked(!liked);
+    };
+    
+    const handleCommentClick = (e) => {
+        e.stopPropagation(); // Prevent card click event
+        navigate(`/actualites/${post.id}#comments`);
+    };
+    
+    const handleShareClick = (e) => {
+        e.stopPropagation(); // Prevent card click event
+        // Share functionality
     };
 
     return (
-        <Card
-            className="post-card"
-            sx={{ 
-                height: "100%", 
-                display: "flex", 
-                flexDirection: "column",
-                borderRadius: 3,
-                overflow: "hidden",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-                position: "relative",
-                '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '4px',
-                    height: '100%',
-                    background: 'linear-gradient(to bottom, #8e24aa, #e91e63)',
-                    opacity: 0.8
-                }
-            }}
+        <Card 
+          elevation={2} 
+          sx={{ 
+            height: '100%', 
+            display: 'flex', 
+            flexDirection: 'column',
+            transition: 'transform 0.2s, box-shadow 0.2s',
+            '&:hover': {
+              transform: 'translateY(-5px)',
+              boxShadow: 6,
+            },
+            cursor: 'pointer'
+          }}
+          onClick={() => navigate(`/actualites/${post.id}`)}
         >
             <CardActionArea>
                 {post.image && (
@@ -153,7 +159,7 @@ const PostCard = ({ post }) => {
                     <IconButton 
                         aria-label="ajouter aux favoris" 
                         size="small"
-                        onClick={handleLike}
+                        onClick={handleLikeClick}
                         color={liked ? "secondary" : "default"}
                         sx={{ 
                             transition: 'transform 0.2s ease',
@@ -170,6 +176,7 @@ const PostCard = ({ post }) => {
                     <IconButton 
                         aria-label="commenter" 
                         size="small"
+                        onClick={handleCommentClick}
                         sx={{ 
                             mx: 1,
                             transition: 'transform 0.2s ease',
@@ -181,6 +188,7 @@ const PostCard = ({ post }) => {
                     <IconButton 
                         aria-label="partager" 
                         size="small"
+                        onClick={handleShareClick}
                         sx={{ 
                             transition: 'transform 0.2s ease',
                             '&:hover': { transform: 'scale(1.1)' }
